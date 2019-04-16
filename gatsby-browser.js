@@ -8,6 +8,7 @@ import red from "@material-ui/core/es/colors/red"
 import createMuiTheme from "./node_modules/@material-ui/core/es/styles/createMuiTheme"
 import blue from "@material-ui/core/es/colors/blue"
 import Paper from "./node_modules/@material-ui/core/Paper/Paper"
+import CssBaseline from "@material-ui/core/CssBaseline"
 
 // const theme = createMuiTheme({
 //   palette: {
@@ -28,12 +29,11 @@ import Paper from "./node_modules/@material-ui/core/Paper/Paper"
 
 export const wrapRootElement = ({ element }) => {
   console.log(element)
-  const theme = createMuiTheme();
   return (
     <AppProvider>
-      <ThemeProvider theme={theme}>
+
+      <CssBaseline />
         {element}
-      </ThemeProvider>
     </AppProvider>
   )
 }

@@ -9,7 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import "./layout.css"
+// import "./layout.css"
 import MiniDrawer from './appbar'
 
 const Layout = ({ children }) => (
@@ -42,6 +42,7 @@ const Layout = ({ children }) => (
               <a href="https://www.gatsbyjs.org">Gatsby</a>
             </footer>
           </div>
+
         </MiniDrawer>
       </>
     )}

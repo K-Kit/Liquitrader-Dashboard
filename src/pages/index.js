@@ -15,7 +15,7 @@ import withTheme from "@material-ui/core/es/styles/withTheme"
 import {Line, Bar} from 'react-chartjs-2';
 import {barData, lineData, dashboard_placeholder} from "../data"
 import Table from "../../node_modules/@material-ui/core/Table/Table"
-import ThemeProvider from "@material-ui/styles/es/ThemeProvider"
+import ThemeProvider from "@material-ui/styles/ThemeProvider"
 import AppContext  from "../context/appcontext"
 
 
@@ -46,7 +46,7 @@ const CardIcon = styled.div`
     border-color: black;
     background: blueviolet;
     z-index: 3000;
-    padding: 4px 4px 4px 4px;
+    //padding: 4px 4px 4px 4px;
     
 `
 const StyledImage = styled.img`
@@ -57,6 +57,7 @@ const StyledImage = styled.img`
       line-height:56px;
       margin:10px 10px 4px;
       text-align:center;
+      
 `
 
 const StyledCardHeader = styled.div`
@@ -83,10 +84,9 @@ const IndexPage = props => {
   return (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-
           {/*<StyledPaper>*/}
-          <Button color={"primary"}>hello</Button>
-          <Grid container spacing={24} alignContent={'stretch'} alignItems={'stretch'}>
+          <Button color={"primary"} onClick={appcontext.toggleDark}>hello</Button>
+          <Grid container spacing={24} alignContent={'stretch'} alignItems={'stretch'} justify={"space-evenly"}>
 
             {/* cum profit Line chart card */}
             <Grid item lg={6} >
@@ -104,7 +104,7 @@ const IndexPage = props => {
             </Grid>
 
             {/* group of 4 small cards */}
-            <Grid container item lg={6} spacing={24} alignContent={'stretch'} alignItems={'stretch'} styles={{height:"auto"}}>
+            <Grid container item lg={6} spacing={16} justify={"flex-start"}  styles={{height:"auto", width: "100%", padding: 0, margin: 0}}>
               <Grid item lg={6}>
                 <StyledCard> hello </StyledCard>
               </Grid>
@@ -136,11 +136,11 @@ const IndexPage = props => {
               <StyledCard>
 
                 <Grid container alignItems={"stretch"} alignContent={"stretch"}>
-                  <Grid lg={6}>
+                  <Grid item lg={6}>
                     <Table />
                   </Grid>
 
-                  <Grid lg={6}>
+                  <Grid item lg={6}>
                     <Bar
                       data={barData}
                       width={"100%"}
@@ -160,7 +160,7 @@ const IndexPage = props => {
   )
 }
 
-export default withTheme()(IndexPage)
+export default (IndexPage)
 
 export const pageQuery = graphql`
   query {
