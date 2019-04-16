@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "gatsby"
 import { useTheme } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
@@ -15,6 +15,8 @@ import withTheme from "@material-ui/core/es/styles/withTheme"
 import {Line, Bar} from 'react-chartjs-2';
 import {barData, lineData, dashboard_placeholder} from "../data"
 import Table from "../../node_modules/@material-ui/core/Table/Table"
+import ThemeProvider from "@material-ui/styles/es/ThemeProvider"
+import AppContext  from "../context/appcontext"
 
 
 const StyledCard = styled(Card)`
@@ -71,87 +73,90 @@ const CardBody = styled.div`
     -webkit-box-flex: 1;
 `
 const StyledPaper = styled(Paper)`
-  overflow: visible;
+  overflow: auto;
   padding: 16px;
+  width: 100%;
 `
 const IndexPage = props => {
-  const theme = useTheme()
-  console.log(props)
+  const appcontext = useContext(AppContext)
+  console.log('context', appcontext)
   return (
-    <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <StyledPaper>
-        <Grid container spacing={24} alignContent={'stretch'} alignItems={'stretch'}>
+      <Layout>
+        <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
 
-          {/* cum profit Line chart card */}
-          <Grid item lg={6} >
-            <StyledCard>
+          {/*<StyledPaper>*/}
+          <Button color={"primary"}>hello</Button>
+          <Grid container spacing={24} alignContent={'stretch'} alignItems={'stretch'}>
 
-              <StyledCardHeader>
-              <CardIcon>
-                <StyledImage src={props.data.placeholderImage.publicURL} />
-              </CardIcon>
-              </StyledCardHeader>
+            {/* cum profit Line chart card */}
+            <Grid item lg={6} >
+              <StyledCard>
 
-              <Line data={lineData} />
-              <CardBody>Cumulative Profit</CardBody>
-            </StyledCard>
-          </Grid>
+                <StyledCardHeader>
+                  <CardIcon>
+                    <StyledImage src={props.data.placeholderImage.publicURL} />
+                  </CardIcon>
+                </StyledCardHeader>
 
-          {/* group of 4 small cards */}
-          <Grid container item lg={6} spacing={24} alignContent={'stretch'} alignItems={'stretch'} styles={{height:"auto"}}>
-            <Grid item lg={6}>
-              <StyledCard> hello </StyledCard>
+                <Line data={lineData} />
+                <CardBody>Cumulative Profit</CardBody>
+              </StyledCard>
             </Grid>
-            <Grid item lg={6}>
-              <StyledCard> hello </StyledCard>
-            </Grid>
-            <Grid item lg={6}>
-              <StyledCard> hello </StyledCard>
-            </Grid>
-            <Grid item lg={6}>
-              <StyledCard> hello </StyledCard>
-            </Grid>
-          </Grid>
 
-          <Grid item lg={3}>
-            <StyledCard> hello </StyledCard>
-          </Grid>
-          <Grid item lg={3}>
-            <StyledCard> hello </StyledCard>
-          </Grid>
-          <Grid item lg={6}>
-            <StyledCard>
-              <Line data={lineData} />
-              <CardContent>Cumulative Profit</CardContent>
-            </StyledCard>
-          </Grid>
-
-          <Grid item lg={12}>
-            <StyledCard>
-
-              <Grid container alignItems={"stretch"} alignContent={"stretch"}>
-                <Grid lg={6}>
-                  <Table />
-                </Grid>
-
-                <Grid lg={6}>
-                  <Bar
-                    data={barData}
-                    width={"100%"}
-                    height={250}
-                    options={{
-                      maintainAspectRatio: false
-                    }}
-                  />
-                </Grid>
+            {/* group of 4 small cards */}
+            <Grid container item lg={6} spacing={24} alignContent={'stretch'} alignItems={'stretch'} styles={{height:"auto"}}>
+              <Grid item lg={6}>
+                <StyledCard> hello </StyledCard>
               </Grid>
-            </StyledCard>
+              <Grid item lg={6}>
+                <StyledCard> hello </StyledCard>
+              </Grid>
+              <Grid item lg={6}>
+                <StyledCard> hello </StyledCard>
+              </Grid>
+              <Grid item lg={6}>
+                <StyledCard> hello </StyledCard>
+              </Grid>
+            </Grid>
+
+            <Grid item lg={3}>
+              <StyledCard> hello </StyledCard>
+            </Grid>
+            <Grid item lg={3}>
+              <StyledCard> hello </StyledCard>
+            </Grid>
+            <Grid item lg={6}>
+              <StyledCard>
+                <Line data={lineData} />
+                <CardContent>Cumulative Profit</CardContent>
+              </StyledCard>
+            </Grid>
+
+            <Grid item lg={12}>
+              <StyledCard>
+
+                <Grid container alignItems={"stretch"} alignContent={"stretch"}>
+                  <Grid lg={6}>
+                    <Table />
+                  </Grid>
+
+                  <Grid lg={6}>
+                    <Bar
+                      data={barData}
+                      width={"100%"}
+                      height={250}
+                      options={{
+                        maintainAspectRatio: false
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </StyledCard>
+            </Grid>
+            {/*<Link to="/page-2/">Go to page 2</Link>*/}
           </Grid>
-          {/*<Link to="/page-2/">Go to page 2</Link>*/}
-        </Grid>
-      </StyledPaper>
-    </Layout>
+          {/*</StyledPaper>*/}
+      </Layout>
   )
 }
 
