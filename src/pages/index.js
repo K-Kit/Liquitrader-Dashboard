@@ -26,27 +26,26 @@ const StyledCard = styled(Card)`
     position: relative;
     word-wrap: break-word;
     font-size: .875rem;
-    margin-top: 30px;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     margin-bottom: 30px;
     border-radius: 6px;
     flex-direction: column;
-    background-color: blue;
     overflow: visible !important;
     height: 100%;
 `
 
-const CardIcon = styled.div`
+const CardIcon = withTheme()(styled.div`
     float: left;
     padding: 4px;
     margin-top: -8px;
-    margin-right: 15px;
+    //margin-right: 15px;
     border-radius: 3px;
     border-color: black;
-    background: blueviolet;
+    background: ${props => props.theme.palette.primary.main};
     z-index: 3000;
+    margin-bottom: -20px;
     
-`
+`)
 const StyledImage = styled.img`
       color: hsl(204, 33%, 88%);
       display: inline-block;
@@ -55,6 +54,7 @@ const StyledImage = styled.img`
       line-height:56px;
       margin:10px 10px 4px;
       text-align:center;
+      width: 36px;
       
 `
 
@@ -62,14 +62,14 @@ const StyledCardHeader = styled.div`
     color: #d7e3eb;
     margin: 0 15px;
     padding: 0;
-    position: relative;
+    position: absolute;
 `
 
-const CardBody = styled.div`    
-    flex: 1 1 auto;
-    padding: 8px 8px 0px 8px;
+const CardBody = styled.div`
+    padding: 16px 24px 0px 8px;
     position: relative;
-    -webkit-box-flex: 1;
+    text-align: right;
+    //float: right;
 `
 const StyledPaper = styled(Paper)`
   overflow: auto;
@@ -83,11 +83,11 @@ const IndexPage = props => {
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
           {/*<StyledPaper>*/}
-          <Button color={"primary"} onClick={appcontext.toggleDark}>hello</Button>
-          <Grid container spacing={16}  justify={"space-evenly"}>
+          <Button color={"primary"} onClick={appcontext.toggleDark}>Swap theme</Button>
+          <Grid container spacing={24}  justify={"space-evenly"}>
 
             {/* cum profit Line chart card */}
-            <Grid item lg={6} >
+            <Grid item xs={12}>
               <StyledCard>
                 <Line data={lineData} />
                 <CardBody>
@@ -99,46 +99,66 @@ const IndexPage = props => {
             </Grid>
 
             {/* group of 4 small cards */}
-            <Grid container item lg={6} spacing={16} justify={"flex-start"}  styles={{height:"auto", width: "100%", padding: 0, margin: 0}}>
-              <Grid item lg={6} xs={12}>
+            {/*<Grid container item lg={6} spacing={16} justify={"flex-start"}  styles={{height:"auto", width: "100%", padding: 0, margin: 0}}>*/}
+              <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
                     <CardIcon>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
+                  <CardBody>
+                    <Typography variant={'subtitle1'}> Available Balance </Typography>
+                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
+                    <Typography variant={'caption'}> $7954.48</Typography>
+                  </CardBody>
                 </StyledCard>
               </Grid>
-              <Grid item lg={6} xs={12}>
+              <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
                     <CardIcon>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
+                  <CardBody>
+                    <Typography variant={'subtitle1'}> Available Balance </Typography>
+                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
+                    <Typography variant={'caption'}> $7954.48</Typography>
+                  </CardBody>
                 </StyledCard>
               </Grid>
-              <Grid item lg={6} xs={12}>
+              <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
                     <CardIcon>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
+                  <CardBody>
+                    <Typography variant={'subtitle1'}> Available Balance </Typography>
+                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
+                    <Typography variant={'caption'}> $7954.48</Typography>
+                  </CardBody>
                 </StyledCard>
               </Grid>
-              <Grid item lg={6} xs={12}>
+              <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
                     <CardIcon>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
+                  <CardBody><Typography variant={'subtitle1'}> Available Balance </Typography>
+                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
+                    <Typography variant={'caption'}> $7954.48</Typography>
+                  </CardBody>
                 </StyledCard>
               </Grid>
-            </Grid>
 
-            <Grid item lg={3} xs={12}>
+            {/*</Grid>*/}
+
+            <Grid item md={6} lg={3} xs={12}>
               <StyledCard>
                 <StyledCardHeader>
                   <CardIcon>
@@ -147,7 +167,7 @@ const IndexPage = props => {
                 </StyledCardHeader>
               </StyledCard>
             </Grid>
-            <Grid item lg={3} xs={12}>
+            <Grid item md={6} lg={3} xs={12}>
               <StyledCard>
                 <StyledCardHeader>
                   <CardIcon>
@@ -156,7 +176,7 @@ const IndexPage = props => {
                 </StyledCardHeader>
               </StyledCard>
             </Grid>
-            <Grid item lg={6} xs={12}>
+            <Grid item lg={6}  xs={12}>
               <StyledCard>
                 <Line data={lineData} />
                 <CardContent>Cumulative Profit</CardContent>
@@ -194,7 +214,7 @@ export default (IndexPage)
 
 export const pageQuery = graphql`
   query {
-    placeholderImage: file(absolutePath: { regex: "/color/btc.svg/" }) {
+    placeholderImage: file(absolutePath: { regex: "/white/eth.svg/" }) {
     relativePath
     absolutePath
 
