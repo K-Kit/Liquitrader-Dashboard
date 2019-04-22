@@ -23,6 +23,7 @@ const themes = {
 const defaultState = {
   dark: false,
   toggleDark: () => {},
+  theme: themes.dark
 }
 
 const AppContext = React.createContext(defaultState)
