@@ -34,7 +34,7 @@ const StyledCard = styled(Card)`
     height: 100%;
 `
 
-const CardIcon = withTheme()(styled.div`
+const CardIcon = styled.div`
     float: left;
     padding: 4px;
     margin-top: -8px;
@@ -43,9 +43,8 @@ const CardIcon = withTheme()(styled.div`
     border-color: black;
     background: ${props => props.theme.palette.primary.main};
     z-index: 3000;
-    margin-bottom: -20px;
-    
-`)
+    margin-bottom: -20px;   
+`
 const StyledImage = styled.img`
       color: hsl(204, 33%, 88%);
       display: inline-block;
@@ -103,7 +102,7 @@ const IndexPage = props => {
               <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
-                    <CardIcon>
+                    <CardIcon theme={appcontext.theme}>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
@@ -117,7 +116,7 @@ const IndexPage = props => {
               <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
-                    <CardIcon>
+                    <CardIcon theme={appcontext.theme}>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
@@ -131,7 +130,7 @@ const IndexPage = props => {
               <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
-                    <CardIcon>
+                    <CardIcon theme={appcontext.theme}>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
@@ -145,7 +144,7 @@ const IndexPage = props => {
               <Grid item md={6} xs={12}>
                 <StyledCard>
                   <StyledCardHeader>
-                    <CardIcon>
+                    <CardIcon theme={appcontext.theme}>
                       <StyledImage src={props.data.placeholderImage.publicURL} />
                     </CardIcon>
                   </StyledCardHeader>
@@ -161,7 +160,7 @@ const IndexPage = props => {
             <Grid item md={6} lg={3} xs={12}>
               <StyledCard>
                 <StyledCardHeader>
-                  <CardIcon>
+                  <CardIcon theme={appcontext.theme}>
                     <StyledImage src={props.data.placeholderImage.publicURL} />
                   </CardIcon>
                 </StyledCardHeader>
@@ -170,7 +169,7 @@ const IndexPage = props => {
             <Grid item md={6} lg={3} xs={12}>
               <StyledCard>
                 <StyledCardHeader>
-                  <CardIcon>
+                  <CardIcon theme={appcontext.theme}>
                     <StyledImage src={props.data.placeholderImage.publicURL} />
                   </CardIcon>
                 </StyledCardHeader>
