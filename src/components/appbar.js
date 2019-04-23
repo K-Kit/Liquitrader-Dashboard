@@ -103,7 +103,7 @@ function ResponsiveDrawer(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Responsive drawer
+              LiquiTrader
             </Typography>
           </Toolbar>
         </AppBar>

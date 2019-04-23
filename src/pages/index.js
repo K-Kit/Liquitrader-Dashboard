@@ -18,13 +18,12 @@ import Table from "../../node_modules/@material-ui/core/Table/Table"
 import ThemeProvider from "@material-ui/styles/ThemeProvider"
 import AppContext  from "../context/appcontext"
 import Typography from '@material-ui/core/Typography';
+import CardTable from "../components/TableCard/tablecard";
 
 const StyledCard = styled(Card)`
     //width: 100%;
-    border: 0;
     display: flex;
     position: relative;
-    word-wrap: break-word;
     font-size: .875rem;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     margin-bottom: 30px;
@@ -37,52 +36,96 @@ const StyledCard = styled(Card)`
 const CardIcon = styled.div`
     float: left;
     padding: 4px;
-    margin-top: -8px;
+    margin: -16px 16px -16px 16px;
     //margin-right: 15px;
     border-radius: 3px;
     border-color: black;
     background: ${props => props.theme.palette.primary.main};
     z-index: 3000;
-    margin-bottom: -20px;   
+    width: fit-content;
+    ::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
 `
 const StyledImage = styled.img`
-      color: hsl(204, 33%, 88%);
       display: inline-block;
       font-size:36px;
       font-weight:300;
       line-height:56px;
       margin:10px 10px 4px;
       text-align:center;
-      width: 36px;
-      
+      width: 54px;
 `
 
 const StyledCardHeader = styled.div`
     color: #d7e3eb;
-    margin: 0 15px;
+    margin: 0 15px 0 0 ;
     padding: 0;
     position: absolute;
 `
 
 const CardBody = styled.div`
-    padding: 16px 24px 0px 8px;
+    padding: 16px 16px 0px 8px;
     position: relative;
     text-align: right;
-    //float: right;
 `
-const StyledPaper = styled(Paper)`
-  overflow: auto;
-  padding: 16px;
-  width: 100%;
-`
+
+const ValueCard = ({title, main, sub, data}) => {
+  const context = useContext(AppContext);
+
+  return(
+    <Grid item md={6} xs={12}>
+      <StyledCard>
+
+        <StyledCardHeader>
+          <CardIcon theme={context.theme}>
+            <StyledImage src={data.placeholderImage.publicURL} />
+          </CardIcon>
+        </StyledCardHeader>
+
+        <CardBody>
+          <Typography variant={'subtitle1'}> {title} </Typography>
+          <Typography variant={'subtitle2'}> {main} </Typography>
+          <Typography variant={'caption'}> {sub} </Typography>
+        </CardBody>
+      </StyledCard>
+    </Grid>
+  )
+}
+
 const IndexPage = props => {
-  const appcontext = useContext(AppContext)
-  console.log('context', appcontext)
+  const context = useContext(AppContext)
+  const dash = context.data.dashboard
+  const groupdata = [
+    {
+      title: 'Available '+ dash.market + ' Balance',
+      main: dash.quote_balance,
+      sub: ''
+    },
+    {
+      title: 'Total Assumed Value',
+      main: dash.total_pending_value,
+      sub: ''
+    },
+    {
+      title: 'Current Value',
+      main: dash.total_current_value,
+      sub: ''
+    },
+    {
+      title: 'Total Profit',
+      main: dash.quote_balance,
+      sub: dash.total_profit_percent
+    },
+  ]
+  console.log('context', context, groupdata)
   return (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
           {/*<StyledPaper>*/}
-          <Button color={"primary"} onClick={appcontext.toggleDark}>Swap theme</Button>
+          <Button color={"primary"} onClick={context.toggleDark}>Swap theme</Button>
           <Grid container spacing={24}  justify={"space-evenly"}>
 
             {/* cum profit Line chart card */}
@@ -98,96 +141,96 @@ const IndexPage = props => {
             </Grid>
 
             {/* group of 4 small cards */}
-            {/*<Grid container item lg={6} spacing={16} justify={"flex-start"}  styles={{height:"auto", width: "100%", padding: 0, margin: 0}}>*/}
-              <Grid item md={6} xs={12}>
-                <StyledCard>
-                  <StyledCardHeader>
-                    <CardIcon theme={appcontext.theme}>
-                      <StyledImage src={props.data.placeholderImage.publicURL} />
-                    </CardIcon>
-                  </StyledCardHeader>
-                  <CardBody>
-                    <Typography variant={'subtitle1'}> Available Balance </Typography>
-                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
-                    <Typography variant={'caption'}> $7954.48</Typography>
-                  </CardBody>
-                </StyledCard>
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <StyledCard>
-                  <StyledCardHeader>
-                    <CardIcon theme={appcontext.theme}>
-                      <StyledImage src={props.data.placeholderImage.publicURL} />
-                    </CardIcon>
-                  </StyledCardHeader>
-                  <CardBody>
-                    <Typography variant={'subtitle1'}> Available Balance </Typography>
-                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
-                    <Typography variant={'caption'}> $7954.48</Typography>
-                  </CardBody>
-                </StyledCard>
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <StyledCard>
-                  <StyledCardHeader>
-                    <CardIcon theme={appcontext.theme}>
-                      <StyledImage src={props.data.placeholderImage.publicURL} />
-                    </CardIcon>
-                  </StyledCardHeader>
-                  <CardBody>
-                    <Typography variant={'subtitle1'}> Available Balance </Typography>
-                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
-                    <Typography variant={'caption'}> $7954.48</Typography>
-                  </CardBody>
-                </StyledCard>
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <StyledCard>
-                  <StyledCardHeader>
-                    <CardIcon theme={appcontext.theme}>
-                      <StyledImage src={props.data.placeholderImage.publicURL} />
-                    </CardIcon>
-                  </StyledCardHeader>
-                  <CardBody><Typography variant={'subtitle1'}> Available Balance </Typography>
-                    <Typography variant={'subtitle2'}> 1.57405005 BTC </Typography>
-                    <Typography variant={'caption'}> $7954.48</Typography>
-                  </CardBody>
-                </StyledCard>
-              </Grid>
+            {groupdata.map(item => {
+              return (
+                <ValueCard
+                  {...item}{ ...props}
+                />
+              )
+            })}
 
             {/*</Grid>*/}
 
-            <Grid item md={6} lg={3} xs={12}>
+            <Grid item md={6}  xs={12}>
               <StyledCard>
-                <StyledCardHeader>
-                  <CardIcon theme={appcontext.theme}>
+                {/**/}
+                  <CardIcon theme={context.theme}>
                     <StyledImage src={props.data.placeholderImage.publicURL} />
                   </CardIcon>
-                </StyledCardHeader>
+                {/**/}
+                <CardBody>
+                  <CardTable
+                    data={context.data.dashboard.market_conditions}
+                    columns={[
+                      "Condition",
+                      {
+                        name: "Status",
+                        options: {
+                          filter: false,
+                          customBodyRender: value => <span style={{color: value == 'True' ? "green": "red"}}> {value} </span>
+                        }
+                      },
+                      ]}
+                    title={"Market Conditions"}
+                  />
+                </CardBody>
               </StyledCard>
             </Grid>
-            <Grid item md={6} lg={3} xs={12}>
+            <Grid item md={6} xs={12}>
               <StyledCard>
-                <StyledCardHeader>
-                  <CardIcon theme={appcontext.theme}>
+
+                  <CardIcon theme={context.theme}>
                     <StyledImage src={props.data.placeholderImage.publicURL} />
                   </CardIcon>
-                </StyledCardHeader>
+                <CardBody>
+
+                  <CardTable
+                    data={context.data.dashboard.recent_sales}
+                    columns={[
+                      {
+                        name: "symbol",
+                        label: "Symbol"
+                      },
+                      {
+                        name: "gain",
+                        label: "Gain",
+                        options: {
+                          filter: false,
+                          customBodyRender: value => <span style={{color: value > 0 ? "green": "red"}}> {value.toFixed(2)} </span>
+                        }
+                      },
+                    ]}
+                    title={"Recent Sales"}
+                  />
+                </CardBody>
               </StyledCard>
             </Grid>
-            <Grid item lg={6}  xs={12}>
-              <StyledCard>
-                <Line data={lineData} />
-                <CardContent>Cumulative Profit</CardContent>
-              </StyledCard>
-            </Grid>
+            {/*<Grid item lg={6}  xs={12}>*/}
+              {/*<StyledCard>*/}
+                {/*<Line data={lineData} />*/}
+                {/*<CardContent>Cumulative Profit</CardContent>*/}
+              {/*</StyledCard>*/}
+            {/*</Grid>*/}
 
             <Grid item lg={12} xs={12}>
               <StyledCard>
 
-                <Grid container alignItems={"stretch"} alignContent={"stretch"}>
+                <Grid container alignItems={"stretch"} alignContent={"stretch"} spacing={16}>
                   <Grid item lg={6} xs={12}>
-                    <Table />
+                    <CardTable
+                      data={context.data.dashboard.market_conditions}
+                      columns={[
+                        "Condition",
+                        {
+                          name: "Status",
+                          options: {
+                            filter: false,
+                            customBodyRender: value => <span style={{color: value == 'True' ? "green": "red"}}> {value} </span>
+                          }
+                        },
+                      ]}
+                      title={"Market Conditions"}
+                    />
                   </Grid>
                   <Grid item lg={6} xs={12}>
                     <Bar

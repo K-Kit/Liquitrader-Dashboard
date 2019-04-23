@@ -4,6 +4,7 @@ import red from "@material-ui/core/es/colors/red"
 
 import { ThemeProvider, } from '@material-ui/styles';
 import { deepOrange, lightBlue, cyan, blue } from "@material-ui/core/colors"
+import { dashboard_placeholder } from "../data"
 
 const themes = {
   light: createMuiTheme({
@@ -11,19 +12,42 @@ const themes = {
       type: 'light',
       primary: blue
     },
+    overrides: {
+      MUIDataTable: {
+        root: {
+          backgroundColor: "transparent"
+        },
+        paper: {
+          boxShadow: "none"
+        }
+      },
+    }
   }),
   dark: createMuiTheme({
     palette: {
       type: 'dark',
       primary: blue
     },
+    overrides: {
+      MUIDataTable: {
+        root: {
+          backgroundColor: "transparent"
+        },
+        paper: {
+          boxShadow: "none"
+        }
+      },
+    }
   })
 }
 
 const defaultState = {
   dark: false,
   toggleDark: () => {},
-  theme: themes.dark
+  theme: themes.dark,
+  data: {
+    dashboard: dashboard_placeholder
+  }
 }
 
 const AppContext = React.createContext(defaultState)
@@ -35,8 +59,7 @@ const supportsDarkMode = () =>
 
 class AppProvider extends React.Component {
   state = {
-    dark: false,
-    theme: themes.dark
+    ...defaultState
   }
 
   toggleDark = () => {
@@ -57,13 +80,14 @@ class AppProvider extends React.Component {
 
   render() {
     const { children } = this.props
-    const { dark, theme } = this.state
+    const { dark, theme, data } = this.state
     return (
       <AppContext.Provider
         value={{
           dark,
           toggleDark: this.toggleDark,
-          theme
+          theme,
+          data
         }}
       >
         {/* todo fix needing 2 theme providers, it seems the mui componants */}
