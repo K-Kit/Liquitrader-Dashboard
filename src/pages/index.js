@@ -153,11 +153,9 @@ const IndexPage = props => {
 
             <Grid item md={6}  xs={12}>
               <StyledCard>
-                {/**/}
                   <CardIcon theme={context.theme}>
                     <StyledImage src={props.data.placeholderImage.publicURL} />
                   </CardIcon>
-                {/**/}
                 <CardBody>
                   <CardTable
                     data={context.data.dashboard.market_conditions}
@@ -205,12 +203,6 @@ const IndexPage = props => {
                 </CardBody>
               </StyledCard>
             </Grid>
-            {/*<Grid item lg={6}  xs={12}>*/}
-              {/*<StyledCard>*/}
-                {/*<Line data={lineData} />*/}
-                {/*<CardContent>Cumulative Profit</CardContent>*/}
-              {/*</StyledCard>*/}
-            {/*</Grid>*/}
 
             <Grid item lg={12} xs={12}>
               <StyledCard>
@@ -245,9 +237,7 @@ const IndexPage = props => {
                 </Grid>
               </StyledCard>
             </Grid>
-            {/*<Link to="/page-2/">Go to page 2</Link>*/}
           </Grid>
-          {/*</StyledPaper>*/}
       </Layout>
   )
 }

@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
 // import "./layout.css"
-import MiniDrawer from './appbar'
+import MiniDrawer from './nav/appbar'
 
 const Layout = ({ children }) => (
   <StaticQuery

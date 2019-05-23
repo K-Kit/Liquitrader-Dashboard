@@ -16,8 +16,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, withTheme } from "@material-ui/styles"
-import AppContext from "../context/appcontext"
-import Paper from "../../node_modules/@material-ui/core/Paper/Paper"
+import AppContext from "../../context/appcontext"
+import Paper from "../../../node_modules/@material-ui/core/Paper/Paper"
+import navRoutes, {adminRoutes} from './NavRoutes'
+import {Link} from "gatsby"
 
 const drawerWidth = 240;
 
@@ -61,6 +63,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles(theme)();
   console.log(classes)
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const admin = true
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
@@ -71,19 +74,19 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        {navRoutes.map((item, index) => (
+          <ListItem button key={item.name}>
+            <ListItemIcon>a</ListItemIcon>
+            <ListItemText primary={item.name} />
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        {admin && adminRoutes.views.map((item, index) => (
+          <ListItem button key={item.name}>
+            <ListItemIcon>a</ListItemIcon>
+            <ListItemText primary={item.name} />
           </ListItem>
         ))}
       </List>
