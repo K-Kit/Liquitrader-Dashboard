@@ -91,7 +91,7 @@ const ValueCard = ({title, main, sub, data}) => {
 const IndexPage = props => {
   const context = useContext(StateContext)
   const dash = context.dashboard
-  const groupdata = [
+  const groupdata = !dash ? []:[
     {
       title: 'Available '+ dash.market + ' Balance',
       main: dash.quote_balance,
@@ -113,7 +113,6 @@ const IndexPage = props => {
       sub: dash.total_profit_percent
     },
   ]
-  console.log('context', context, groupdata)
   return (
       <Layout>
         <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -151,7 +150,7 @@ const IndexPage = props => {
                   </CardIcon>
                 <CardBody>
                   <CardTable
-                    data={context.dashboard.market_conditions}
+                    data={dash && dash.market_conditions}
                     columns={[
                       "Condition",
                       {
@@ -176,7 +175,7 @@ const IndexPage = props => {
                 <CardBody>
 
                   <CardTable
-                    data={context.dashboard.recent_sales}
+                    data={dash && dash.recent_sales}
                     columns={[
                       {
                         name: "symbol",
@@ -203,7 +202,7 @@ const IndexPage = props => {
                 <Grid container alignItems={"stretch"} alignContent={"stretch"} spacing={16}>
                   <Grid item lg={6} xs={12}>
                     <CardTable
-                      data={context.dashboard.market_conditions}
+                      data={dash && dash.market_conditions}
                       columns={[
                         "Condition",
                         {

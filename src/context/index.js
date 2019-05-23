@@ -5,7 +5,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
 // todo state management for LT API data
-export const StateContext = createContext();
+export const StateContext = createContext({theme: themes.dark});
 
 
 export const StateProvider = ({children}) =>{
