@@ -90,27 +90,27 @@ const ValueCard = ({title, main, sub, data}) => {
 
 const IndexPage = props => {
   const context = useContext(StateContext)
-  const dash = context.dashboard
-  const groupdata = !dash ? []:[
+  const dash = context.dashboard || {}
+  const groupdata = [
     {
-      title: 'Available '+ dash.market + ' Balance',
-      main: dash.quote_balance,
+      title: 'Available '+ dash.market || "BTC" + ' Balance',
+      main: dash.quote_balance || 0,
       sub: ''
     },
     {
       title: 'Total Assumed Value',
-      main: dash.total_pending_value,
+      main: dash.total_pending_value  || 0,
       sub: ''
     },
     {
       title: 'Current Value',
-      main: dash.total_current_value,
+      main: dash.total_current_value  || 0,
       sub: ''
     },
     {
       title: 'Total Profit',
-      main: dash.quote_balance,
-      sub: dash.total_profit_percent
+      main: dash.quote_balance  || 0,
+      sub: dash.total_profit_percent || 0
     },
   ]
   return (
