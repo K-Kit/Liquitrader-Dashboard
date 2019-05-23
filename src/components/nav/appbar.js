@@ -16,7 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, withTheme } from "@material-ui/styles"
-import AppContext from "../../context/appcontext"
+import {StateContext} from "../../context"
 import Paper from "../../../node_modules/@material-ui/core/Paper/Paper"
 import navRoutes, {adminRoutes} from './NavRoutes'
 import {Link} from "gatsby"
@@ -58,7 +58,7 @@ const useStyles = theme => makeStyles({
 
 function ResponsiveDrawer(props) {
   const { container, children } = props;
-  const appContext = useContext(AppContext)
+  const appContext = useContext(StateContext)
   const  theme = appContext.theme;
   const classes = useStyles(theme)();
   console.log(classes)

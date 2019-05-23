@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
-import { useTheme } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components'
 import Layout from "../components/layout"
@@ -8,15 +7,9 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 import Grid from "../../node_modules/@material-ui/core/Grid/Grid"
 import Card from "../../node_modules/@material-ui/core/Card/Card"
-import Paper from "../../node_modules/@material-ui/core/Paper/Paper"
-import CardHeader from "../../node_modules/@material-ui/core/CardHeader/CardHeader"
-import CardContent from "../../node_modules/@material-ui/core/CardContent/CardContent"
-import withTheme from "@material-ui/core/es/styles/withTheme"
 import {Line, Bar} from 'react-chartjs-2';
 import {barData, lineData, dashboard_placeholder} from "../data"
-import Table from "../../node_modules/@material-ui/core/Table/Table"
-import ThemeProvider from "@material-ui/styles/ThemeProvider"
-import AppContext  from "../context/appcontext"
+import {StateContext} from "../context"
 import Typography from '@material-ui/core/Typography';
 import CardTable from "../components/TableCard/tablecard";
 
@@ -73,7 +66,7 @@ const CardBody = styled.div`
 `
 
 const ValueCard = ({title, main, sub, data}) => {
-  const context = useContext(AppContext);
+  const context = useContext(StateContext);
 
   return(
     <Grid item md={6} xs={12}>
@@ -96,8 +89,8 @@ const ValueCard = ({title, main, sub, data}) => {
 }
 
 const IndexPage = props => {
-  const context = useContext(AppContext)
-  const dash = context.data.dashboard
+  const context = useContext(StateContext)
+  const dash = context.dashboard
   const groupdata = [
     {
       title: 'Available '+ dash.market + ' Balance',
@@ -158,7 +151,7 @@ const IndexPage = props => {
                   </CardIcon>
                 <CardBody>
                   <CardTable
-                    data={context.data.dashboard.market_conditions}
+                    data={context.dashboard.market_conditions}
                     columns={[
                       "Condition",
                       {
@@ -183,7 +176,7 @@ const IndexPage = props => {
                 <CardBody>
 
                   <CardTable
-                    data={context.data.dashboard.recent_sales}
+                    data={context.dashboard.recent_sales}
                     columns={[
                       {
                         name: "symbol",
@@ -210,7 +203,7 @@ const IndexPage = props => {
                 <Grid container alignItems={"stretch"} alignContent={"stretch"} spacing={16}>
                   <Grid item lg={6} xs={12}>
                     <CardTable
-                      data={context.data.dashboard.market_conditions}
+                      data={context.dashboard.market_conditions}
                       columns={[
                         "Condition",
                         {
